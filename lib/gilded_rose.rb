@@ -51,4 +51,8 @@ class GildedRose
       end
     end
   end
+
+  # def decrease_quality
+  #   item.quality
+  # end
 end

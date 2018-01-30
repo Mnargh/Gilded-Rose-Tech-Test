@@ -119,11 +119,17 @@ describe GildedRose do
     end
 
     context "Conjured items" do
-      # it "Conjured items degrade in quality twice as fast as normal items" do
+      # it "Conjured items degrade in quality twice as fast as normal items before sell_in date" do
       #   items = [Item.new("Conjured Mana Cake", 5, 30)]
       #   GildedRose.new(items).update_quality
       #   expect(items[0].quality).to eq 28
       # end
+      
+        # it "Conjured items degrade in quality twice as fast as normal items after sell_in date" do
+        #   items = [item.new("Conjured Mana Cake", 0, 30)]
+        #   GildedRose.new(items).update_quality
+        #   expect(items[0].quality).to 24
+        # end
     end
 
   end
