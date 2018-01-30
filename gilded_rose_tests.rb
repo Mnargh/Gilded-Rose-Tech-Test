@@ -10,3 +10,5 @@ class TestUntitled < Test::Unit::TestCase
   end
 
 end
+
+# Can delete this as it is exaclyt the same test as Gilded_rose_spec.rb

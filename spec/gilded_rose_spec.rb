@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), 'gilded_rose')
+require './lib/gilded_rose'
 
 describe GildedRose do
 
