@@ -10,11 +10,19 @@ describe GildedRose do
       expect(items[0].quality).to eq 20
     end
 
-    it "Item quality decreases by 1 every day" do
+    it "Ordinary item quality and sell_in decreases by 1 every day" do
       items = [Item.new("+5 Dexterity Vest", 10, 20)]
       GildedRose.new(items).update_quality()
       expect(items[0].sell_in).to eq 9
       expect(items[0].quality).to eq 19
+    end
+
+    it "Item quality can not be negative" do
+      items = [Item.new("+5 Dexterity Vest", 10, 0)]
+      GildedRose.new(items).update_quality()
+      expect(items[0].sell_in).to eq 9
+      expect(items[0].quality).to eq 0
+
     end
   end
 
