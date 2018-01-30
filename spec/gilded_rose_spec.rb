@@ -52,11 +52,23 @@ describe GildedRose do
       expect(items[0].quality).to eq 50
     end
 
-    it "Sulfuras never has to be sold and does not decrease in quality" do
+    it "Sulfuras never has to be sold" do
       items = [Item.new("Sulfuras, Hand of Ragnaros", 0, 50)]
       GildedRose.new(items).update_quality()
       expect(items[0].sell_in).to eq 0
+    end
+
+    it "Sulfuras does not decrease in quality" do
+      items = [Item.new("Sulfuras, Hand of Ragnaros", 0, 50)]
+      GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq 50
+    end
+
+    it "Backstage Passes increase in quality by 1 each day, with more than 10 days till sell_in date" do
+      items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 11, 5)]
+      gr = GildedRose.new(items)
+      gr.update_quality
+      expect(items[0].quality).to eq 6
     end
   end
 
