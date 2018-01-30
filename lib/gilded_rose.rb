@@ -11,9 +11,10 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
-        return if item.name == SULFURAS
 
-          unless @only_increase.include?(item.name)
+          return if item.name == SULFURAS
+
+          if item.name != BRIE and item.name != PASS
               decrease_quality(item, 1)
           else
               increase_quality(item, 1)
@@ -29,7 +30,7 @@ class GildedRose
 
           decrease_sell_in(item, 1)
 
-          if item.sell_in < 0
+          if item_out_of_date?(item)
             if item.name != BRIE
               if item.name != PASS
                     decrease_quality(item, 1)
@@ -43,6 +44,10 @@ class GildedRose
     end
   end
 
+  def item_out_of_date?(item)
+    item.sell_in < 0
+  end
+
   def decrease_quality(item, amount)
     item.quality -= amount unless item.quality == 0
   end
@@ -53,6 +58,7 @@ class GildedRose
   end
 
   def decrease_sell_in(item, amount)
+    amount *= 2 if item_out_of_date?(item)
     item.sell_in -= amount
   end
 end
