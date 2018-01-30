@@ -70,6 +70,16 @@ describe GildedRose do
       gr.update_quality
       expect(items[0].quality).to eq 6
     end
+
+    it "Backstage Passes increase in quality by 2 each day when between 10 and 5 days till sell_in date" do
+      items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 5)]
+      gr = GildedRose.new(items)
+      gr.update_quality
+      expect(items[0].quality).to eq 7
+      4.times{gr.update_quality}
+      expect(items[0].sell_in).to eq 5
+      expect(items[0].quality).to eq 15
+    end
   end
 
 end
