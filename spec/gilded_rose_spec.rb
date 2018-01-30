@@ -22,7 +22,17 @@ describe GildedRose do
       GildedRose.new(items).update_quality()
       expect(items[0].sell_in).to eq 9
       expect(items[0].quality).to eq 0
+    end
 
+    it "Item quality decreases twice as fast once the sell by date has passed" do
+      items = [Item.new("+5 Dexterity Vest", 1, 20)]
+      gr = GildedRose.new(items)
+      gr.update_quality()
+      expect(items[0].sell_in).to eq 0
+      expect(items[0].quality).to eq 19
+      gr.update_quality()
+      expect(items[0].sell_in).to eq -1
+      expect(items[0].quality).to eq 17
     end
   end
 
