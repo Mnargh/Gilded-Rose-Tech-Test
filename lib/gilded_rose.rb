@@ -11,25 +11,18 @@ class GildedRose
   def update_quality()
     @items.each do |item|
 
-
       if item.name != BRIE and item.name != PASS
-          if item.quality > 0
-              if item.name != SULFURAS
-                decrease_quality(item, 1)
-              end
-          end
+          decrease_quality(item, 1)
       else
-          if item.quality < 50
-            increase_quality(item, 1)
-              if item.name == PASS
-                  if item.sell_in < 11
-                        increase_quality(item, 1)
-                  end
-                  if item.sell_in < 6
-                        increase_quality(item, 1)
-                  end
-              end
-          end
+          increase_quality(item, 1)
+            if item.name == PASS
+                if item.sell_in < 11
+                      increase_quality(item, 1)
+                end
+                if item.sell_in < 6
+                      increase_quality(item, 1)
+                end
+            end
       end
 
       if item.name != SULFURAS
@@ -39,25 +32,19 @@ class GildedRose
       if item.sell_in < 0
         if item.name != BRIE
           if item.name != PASS
-            if item.quality > 0
-              if item.name != SULFURAS
                 decrease_quality(item, 1)
-              end
-            end
           else
-            item.quality = item.quality - item.quality
+            item.quality = 0
           end
         else
-          if item.quality < 50
             increase_quality(item, 1)
-          end
         end
       end
     end
   end
 
   def decrease_quality(item, amount)
-    item.quality -= amount
+    item.quality -= amount unless item.name == SULFURAS || item.quality == 0
   end
 
   def increase_quality(item, amount)
