@@ -13,10 +13,13 @@ class GildedRose
     @items.each do |item|
 
           return if item.name == SULFURAS
+          # if only increase includes? matures, otherwise decays
 
-          if item.name != BRIE and item.name != PASS
+          if quality_increase_over_time?(item) == false
+            # decays
               decrease_quality(item, 1)
           else
+            # matures
               increase_quality(item, 1)
                 if item.name == PASS
                     if item.sell_in < 11
@@ -42,6 +45,10 @@ class GildedRose
             end
           end
     end
+  end
+
+  def quality_increase_over_time?(item)
+    @only_increase.include?(item.name)
   end
 
   def item_out_of_date?(item)
