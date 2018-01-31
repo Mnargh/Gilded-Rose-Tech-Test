@@ -37,13 +37,13 @@ describe GildedRose do
       end
 
       it "Item quality decreases twice as fast once the sell by date has passed" do
-        items = [Item.new("+5 Dexterity Vest", 1, 20)]
+        items = [Item.new("+5 Dexterity Vest", 0, 20)]
         gr = GildedRose.new(items)
         gr.update_quality()
-        expect(items[0].sell_in).to eq 0
+        expect(items[0].sell_in).to eq -1
         expect(items[0].quality).to eq 19
         gr.update_quality()
-        expect(items[0].sell_in).to eq -1
+        expect(items[0].sell_in).to eq -2
         expect(items[0].quality).to eq 17
       end
     end
@@ -114,7 +114,12 @@ describe GildedRose do
         items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 0, 5)]
         gr = GildedRose.new(items)
         gr.update_quality
+        expect(items[0].sell_in).to eq -1
+        expect(items[0].quality).to eq 8
+        gr.update_quality
+        expect(items[0].sell_in).to eq -2
         expect(items[0].quality).to eq 0
+
       end
     end
 
@@ -124,7 +129,7 @@ describe GildedRose do
       #   GildedRose.new(items).update_quality
       #   expect(items[0].quality).to eq 28
       # end
-      
+
         # it "Conjured items degrade in quality twice as fast as normal items after sell_in date" do
         #   items = [item.new("Conjured Mana Cake", 0, 30)]
         #   GildedRose.new(items).update_quality

@@ -13,27 +13,13 @@ class GildedRose
     @items.each do |item|
 
           return if item.name == SULFURAS
-          # if only increase includes? matures, otherwise decays
 
           if !quality_increase_over_time?(item)
             item_decays(item)
           elsif quality_increase_over_time?(item)
             item_matures(item)
           end
-
           decrease_sell_in(item, 1)
-
-          if item_out_of_date?(item)
-            if item.name != BRIE
-              if item.name != PASS
-                    decrease_quality(item, 1)
-              else
-                item.quality = 0
-              end
-            else
-                increase_quality(item, 1)
-            end
-          end
     end
   end
 
@@ -49,6 +35,7 @@ class GildedRose
   def backstage_pass_bonus(item)
     increase_quality(item, 1) if item.sell_in < 11
     increase_quality(item, 1) if item.sell_in < 6
+    item.quality = 0 if item_out_of_date?(item)
   end
 
   def quality_increase_over_time?(item)
@@ -60,6 +47,7 @@ class GildedRose
   end
 
   def decrease_quality(item, amount)
+    amount *= 2 if item_out_of_date?(item)
     item.quality -= amount unless item.quality == 0
   end
 
@@ -69,7 +57,6 @@ class GildedRose
   end
 
   def decrease_sell_in(item, amount)
-    amount *= 2 if item_out_of_date?(item)
     item.sell_in -= amount
   end
 end
