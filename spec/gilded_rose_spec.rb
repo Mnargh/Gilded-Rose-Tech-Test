@@ -1,6 +1,7 @@
 require './lib/gilded_rose'
 require './lib/normal'
 require './lib/brie'
+require './lib/sulfuras'
 
 describe GildedRose do
 
@@ -65,21 +66,21 @@ describe GildedRose do
         expect(items[0].quality).to eq 50
       end
     end
-  #
-  #
-  #   context "Sulfuras" do
-  #     it "Sulfuras never has to be sold" do
-  #       items = [Item.new("Sulfuras, Hand of Ragnaros", 0, 50)]
-  #       GildedRose.new(items).update_quality()
-  #       expect(items[0].sell_in).to eq 0
-  #     end
-  #
-  #     it "Sulfuras does not decrease in quality" do
-  #       items = [Item.new("Sulfuras, Hand of Ragnaros", 0, 50)]
-  #       GildedRose.new(items).update_quality()
-  #       expect(items[0].quality).to eq 50
-  #     end
-  #   end
+
+
+    context "Sulfuras" do
+      it "Sulfuras never has to be sold" do
+        items = [Sulfuras.new("Sulfuras, Hand of Ragnaros", 0, 50)]
+        GildedRose.new(items).update_quality
+        expect(items[0].sell_in).to eq 0
+      end
+
+      it "Sulfuras does not decrease in quality" do
+        items = [Sulfuras.new("Sulfuras, Hand of Ragnaros", 0, 50)]
+        GildedRose.new(items).update_quality
+        expect(items[0].quality).to eq 50
+      end
+    end
   #
   #   context "backstage Passes" do
   #
