@@ -1,5 +1,6 @@
 require './lib/gilded_rose'
 require './lib/normal'
+require './lib/brie'
 
 describe GildedRose do
 
@@ -32,38 +33,38 @@ describe GildedRose do
       end
     end
 
-  #   context "Aged Brie" do
-  #
-  #     it "Sell_in value decreases by 1 every day" do
-  #       items = [Item.new("Aged Brie", 5, 20)]
-  #       GildedRose.new(items).update_quality()
-  #       expect(items[0].sell_in).to eq 4
-  #     end
-  #
-  #     it "Aged Brie increases in quality the older it gets" do
-  #       items = [Item.new("Aged Brie", 5, 20)]
-  #       GildedRose.new(items).update_quality()
-  #       expect(items[0].sell_in).to eq 4
-  #       expect(items[0].quality).to eq 21
-  #     end
-  #
-  #     it "Aged Brie icnreases in quality twice as much after the sell_in date has passed" do
-  #       items = [Item.new("Aged Brie", 0, 20)]
-  #       gr = GildedRose.new(items)
-  #       gr.update_quality
-  #       expect(items[0].sell_in).to eq -1
-  #       expect(items[0].quality).to eq 22
-  #     end
-  #     it "The Quality of an item is never over 50" do
-  #       items = [Item.new("Aged Brie", 5, 49)]
-  #       # add backtage passes to items list here
-  #       gr = GildedRose.new(items)
-  #       gr.update_quality()
-  #       expect(items[0].quality).to eq 50
-  #       gr.update_quality()
-  #       expect(items[0].quality).to eq 50
-  #     end
-  #   end
+    context "Aged Brie" do
+
+      it "Sell_in value decreases by 1 every day" do
+        items = [Brie.new("Aged Brie", 5, 20)]
+        GildedRose.new(items).update_quality
+        expect(items[0].sell_in).to eq 4
+      end
+
+      it "Aged Brie increases in quality the older it gets" do
+        items = [Brie.new("Aged Brie", 5, 20)]
+        GildedRose.new(items).update_quality
+        expect(items[0].sell_in).to eq 4
+        expect(items[0].quality).to eq 21
+      end
+
+      it "Aged Brie icnreases in quality twice as much after the sell_in date has passed" do
+        items = [Brie.new("Aged Brie", 0, 20)]
+        gr = GildedRose.new(items)
+        gr.update_quality
+        expect(items[0].sell_in).to eq -1
+        expect(items[0].quality).to eq 22
+      end
+      it "The Quality of an item is never over 50" do
+        items = [Brie.new("Aged Brie", 5, 49)]
+        # add backtage passes to items list here
+        gr = GildedRose.new(items)
+        gr.update_quality
+        expect(items[0].quality).to eq 50
+        gr.update_quality
+        expect(items[0].quality).to eq 50
+      end
+    end
   #
   #
   #   context "Sulfuras" do
