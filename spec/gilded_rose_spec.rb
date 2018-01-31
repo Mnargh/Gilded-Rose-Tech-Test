@@ -2,6 +2,8 @@ require './lib/gilded_rose'
 require './lib/normal'
 require './lib/brie'
 require './lib/sulfuras'
+require './lib/pass'
+require './lib/conjured'
 
 describe GildedRose do
 
@@ -81,83 +83,83 @@ describe GildedRose do
         expect(items[0].quality).to eq 50
       end
     end
-  #
-  #   context "backstage Passes" do
-  #
-  #     it "Backstage Passes quality cannot exceed 50" do
-  #       items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 11, 50)]
-  #       gr = GildedRose.new(items)
-  #       gr.update_quality
-  #       expect(items[0].quality).to eq 50
-  #     end
-  #
-  #     it "Backstage Passes increase in quality by 1 each day, with more than 10 days till sell_in date" do
-  #       items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 11, 5)]
-  #       gr = GildedRose.new(items)
-  #       gr.update_quality
-  #       expect(items[0].quality).to eq 6
-  #     end
-  #
-  #     it "Backstage Passes increase in quality by 2 each day when between 10 and 5 days till sell_in date" do
-  #       items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 5)]
-  #       gr = GildedRose.new(items)
-  #       gr.update_quality
-  #       expect(items[0].quality).to eq 7
-  #       4.times{gr.update_quality}
-  #       expect(items[0].sell_in).to eq 5
-  #       expect(items[0].quality).to eq 15
-  #     end
-  #
-  #     it "Backstage Passes increase in quality by 3 each day when between 5 days and the sell_in date" do
-  #       items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 5)]
-  #       gr = GildedRose.new(items)
-  #       gr.update_quality
-  #       expect(items[0].quality).to eq 8
-  #       4.times{gr.update_quality}
-  #       expect(items[0].sell_in).to eq 0
-  #       expect(items[0].quality).to eq 20
-  #     end
-  #
-  #     it "Backstage Passes decrease to 0 in quality after the sell_in date has passed" do
-  #       items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 1, 5)]
-  #       gr = GildedRose.new(items)
-  #       gr.update_quality
-  #       expect(items[0].sell_in).to eq 0
-  #       expect(items[0].quality).to eq 8
-  #       gr.update_quality
-  #       expect(items[0].sell_in).to eq -1
-  #       expect(items[0].quality).to eq 0
-  #
-  #     end
-  #   end
-  #
-  #   context "Conjured items" do
-  #
-  #     it "Conjured items decrese sell_in by 1 after each day has passed" do
-  #       items = [Item.new("Conjured Mana Cake", 5, 10)]
-  #       GildedRose.new(items).update_quality
-  #       expect(items[0].sell_in).to eq 4
-  #     end
-  #
-  #     it "Conjured items' quality cannot decrease below 0" do
-  #       items = [Item.new("Conjured Mana Cake", 5, 0)]
-  #       GildedRose.new(items).update_quality
-  #       expect(items[0].sell_in).to eq 4
-  #       expect(items[0].quality).to eq 0
-  #     end
-  #
-  #     it "Conjured items degrade in quality twice as fast as normal items before sell_in date" do
-  #       items = [Item.new("Conjured Mana Cake", 5, 30)]
-  #       GildedRose.new(items).update_quality
-  #       expect(items[0].quality).to eq 28
-  #     end
-  #
-  #     it "Conjured items degrade in quality twice as fast as normal items after sell_in date" do
-  #       items = [Item.new("Conjured Mana Cake", 0, 30)]
-  #       GildedRose.new(items).update_quality
-  #       expect(items[0].quality).to eq 26
-  #     end
-  # end
+
+    context "Backstage Passes" do
+
+      it "Backstage Passes quality cannot exceed 50" do
+        items = [Pass.new("Backstage passes to a TAFKAL80ETC concert", 11, 50)]
+        gr = GildedRose.new(items)
+        gr.update_quality
+        expect(items[0].quality).to eq 50
+      end
+
+      it "Backstage Passes increase in quality by 1 each day, with more than 10 days till sell_in date" do
+        items = [Pass.new("Backstage passes to a TAFKAL80ETC concert", 11, 5)]
+        gr = GildedRose.new(items)
+        gr.update_quality
+        expect(items[0].quality).to eq 6
+      end
+
+      it "Backstage Passes increase in quality by 2 each day when between 10 and 5 days till sell_in date" do
+        items = [Pass.new("Backstage passes to a TAFKAL80ETC concert", 10, 5)]
+        gr = GildedRose.new(items)
+        gr.update_quality
+        expect(items[0].quality).to eq 7
+        4.times{gr.update_quality}
+        expect(items[0].sell_in).to eq 5
+        expect(items[0].quality).to eq 15
+      end
+
+      it "Backstage Passes increase in quality by 3 each day when between 5 days and the sell_in date" do
+        items = [Pass.new("Backstage passes to a TAFKAL80ETC concert", 5, 5)]
+        gr = GildedRose.new(items)
+        gr.update_quality
+        expect(items[0].quality).to eq 8
+        4.times{gr.update_quality}
+        expect(items[0].sell_in).to eq 0
+        expect(items[0].quality).to eq 20
+      end
+
+      it "Backstage Passes decrease to 0 in quality after the sell_in date has passed" do
+        items = [Pass.new("Backstage passes to a TAFKAL80ETC concert", 1, 5)]
+        gr = GildedRose.new(items)
+        gr.update_quality
+        expect(items[0].sell_in).to eq 0
+        expect(items[0].quality).to eq 8
+        gr.update_quality
+        expect(items[0].sell_in).to eq -1
+        expect(items[0].quality).to eq 0
+
+      end
+    end
+
+    context "Conjured items" do
+
+      it "Conjured items decrese sell_in by 1 after each day has passed" do
+        items = [Conjured.new("Conjured Mana Cake", 5, 10)]
+        GildedRose.new(items).update_quality
+        expect(items[0].sell_in).to eq 4
+      end
+
+      it "Conjured items' quality cannot decrease below 0" do
+        items = [Conjured.new("Conjured Mana Cake", 5, 0)]
+        GildedRose.new(items).update_quality
+        expect(items[0].sell_in).to eq 4
+        expect(items[0].quality).to eq 0
+      end
+
+      it "Conjured items degrade in quality twice as fast as normal items before sell_in date" do
+        items = [Conjured.new("Conjured Mana Cake", 5, 30)]
+        GildedRose.new(items).update_quality
+        expect(items[0].quality).to eq 28
+      end
+
+      it "Conjured items degrade in quality twice as fast as normal items after sell_in date" do
+        items = [Conjured.new("Conjured Mana Cake", 0, 30)]
+        GildedRose.new(items).update_quality
+        expect(items[0].quality).to eq 26
+      end
+  end
 
   end
 
