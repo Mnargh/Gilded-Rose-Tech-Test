@@ -19,11 +19,19 @@ class Item
     @quality -= 1
   end
 
+  def increase_quality_by_1
+    @quality += 1
+  end
+
   def expired?
     @sell_in < 0
   end
 
   def minimum_quality
     @quality == 0
+  end
+
+  def maximum_quality
+    @quality == 50
   end
 end
