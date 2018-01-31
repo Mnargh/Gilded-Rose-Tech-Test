@@ -3,9 +3,9 @@ require_relative 'item'
 class Conjured < Item
 
   def update
-    @sell_in -= 1
-    return if @quality == 0
-    @quality -= 2
-    @quality -= 2 if @sell_in < 0
+    reduce_sell_in
+    return if minimum_quality
+    reduce_quality(2)
+    reduce_quality(2) if expired?
   end
 end

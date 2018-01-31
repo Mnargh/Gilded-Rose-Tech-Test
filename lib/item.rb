@@ -15,11 +15,11 @@ class Item
     @sell_in -= 1
   end
 
-  def reduce_quality_by_1
-    @quality -= 1
+  def reduce_quality(amount)
+    @quality -= amount
   end
 
-  def increase_quality_by_1
+  def increase_quality(amount)
     @quality += 1
   end
 
