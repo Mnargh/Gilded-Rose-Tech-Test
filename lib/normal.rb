@@ -3,9 +3,9 @@ require_relative 'item'
 class Normal < Item
 
   def update
-    @sell_in -= 1
-    return if @quality == 0
-    @quality -= 1
-    @quality -= 1 if @sell_in < 0
+    reduce_sell_in
+    return if minimum_quality
+    reduce_quality_by_1
+    reduce_quality_by_1 if expired?
   end
 end
