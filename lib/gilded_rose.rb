@@ -59,4 +59,4 @@ class GildedRose
   def decrease_sell_in(item, amount)
     item.sell_in -= amount
   end
-end
+end 
