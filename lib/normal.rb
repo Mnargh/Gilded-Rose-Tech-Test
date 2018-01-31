@@ -1,12 +1,6 @@
-class Normal
+require_relative 'item'
 
-attr_accessor :name, :sell_in, :quality
-
-  def initialize(name, sell_in, quality)
-    @name = name
-    @sell_in = sell_in
-    @quality = quality
-  end
+class Normal < Item
 
   def update
     @sell_in -= 1
