@@ -20,6 +20,9 @@ class GildedRose
         when PASS
           update_pass(item)
         end
+        if item.name.include?("Conjured")
+          update_conjured(item)
+        end
     end
   end
 
@@ -46,5 +49,13 @@ class GildedRose
     item.quality += 1 if item.sell_in < 10
     item.quality += 1 if item.sell_in < 5
   end
+
+  def update_conjured(item)
+    item.sell_in -= 1
+    return if item.quality == 0
+    item.quality -= 2
+    item.quality -= 2 if item.sell_in < 0
+  end
+
 
 end

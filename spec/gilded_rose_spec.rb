@@ -130,29 +130,29 @@ describe GildedRose do
 
     context "Conjured items" do
 
-      skip "Conjured items decrese sell_in by 1 after each day has passed" do
+      it "Conjured items decrese sell_in by 1 after each day has passed" do
         items = [Item.new("Conjured Mana Cake", 5, 10)]
         GildedRose.new(items).update_quality
         expect(items[0].sell_in).to eq 4
       end
 
-      skip "Conjured items' quality cannot decrease below 0" do
+      it "Conjured items' quality cannot decrease below 0" do
         items = [Item.new("Conjured Mana Cake", 5, 0)]
         GildedRose.new(items).update_quality
         expect(items[0].sell_in).to eq 4
         expect(items[0].quality).to eq 0
       end
 
-      skip "Conjured items degrade in quality twice as fast as normal items before sell_in date" do
+      it "Conjured items degrade in quality twice as fast as normal items before sell_in date" do
         items = [Item.new("Conjured Mana Cake", 5, 30)]
         GildedRose.new(items).update_quality
         expect(items[0].quality).to eq 28
       end
 
-      skip "Conjured items degrade in quality twice as fast as normal items after sell_in date" do
-        items = [item.new("Conjured Mana Cake", 0, 30)]
+      it "Conjured items degrade in quality twice as fast as normal items after sell_in date" do
+        items = [Item.new("Conjured Mana Cake", 0, 30)]
         GildedRose.new(items).update_quality
-        expect(items[0].quality).to 24
+        expect(items[0].quality).to eq 26
       end
   end
 
