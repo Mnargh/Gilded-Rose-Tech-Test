@@ -9,17 +9,17 @@ class GildedRose
     @only_increase = [BRIE, PASS]
   end
 
+  def next_day
+    items.each do |item|
+      update_quality(item)
+    end
+  end
+
   def update_quality()
     @items.each do |item|
-
-          return if item.name == SULFURAS
-
-          if !quality_increase_over_time?(item)
-            item_decays(item)
-          elsif quality_increase_over_time?(item)
-            item_matures(item)
-          end
-          decrease_sell_in(item, 1)
+      return if item.name == SULFURAS
+      quality_increase_over_time?(item) ? item_matures(item) : item_decays(item)
+      decrease_sell_in(item, 1)
     end
   end
 
