@@ -15,20 +15,10 @@ class GildedRose
           return if item.name == SULFURAS
           # if only increase includes? matures, otherwise decays
 
-          if quality_increase_over_time?(item) == false
-            # decays
-              decrease_quality(item, 1)
-          else
-            # matures
-              increase_quality(item, 1)
-                if item.name == PASS
-                    if item.sell_in < 11
-                          increase_quality(item, 1)
-                    end
-                    if item.sell_in < 6
-                          increase_quality(item, 1)
-                    end
-                end
+          if !quality_increase_over_time?(item)
+            item_decays(item)
+          elsif quality_increase_over_time?(item)
+            item_matures(item)
           end
 
           decrease_sell_in(item, 1)
@@ -45,6 +35,20 @@ class GildedRose
             end
           end
     end
+  end
+
+  def item_decays(item)
+    decrease_quality(item, 1)
+  end
+
+  def item_matures(item)
+    increase_quality(item, 1)
+    backstage_pass_bonus(item) if item.name == PASS
+  end
+
+  def backstage_pass_bonus(item)
+    increase_quality(item, 1) if item.sell_in < 11
+    increase_quality(item, 1) if item.sell_in < 6
   end
 
   def quality_increase_over_time?(item)
