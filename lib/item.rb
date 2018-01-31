@@ -34,4 +34,5 @@ class Item
   def maximum_quality
     @quality == 50
   end
+  
 end

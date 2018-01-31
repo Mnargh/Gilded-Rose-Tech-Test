@@ -8,4 +8,5 @@ class Conjured < Item
     reduce_quality(2)
     reduce_quality(2) if expired?
   end
+  
 end

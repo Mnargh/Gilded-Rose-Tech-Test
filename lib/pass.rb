@@ -10,4 +10,5 @@ class Pass < Item
     increase_quality(1) if @sell_in < 10
     increase_quality(1) if @sell_in < 5
   end
+  
 end

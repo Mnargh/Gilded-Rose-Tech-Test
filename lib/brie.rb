@@ -7,4 +7,5 @@ class Brie < Item
     increase_quality(1) unless maximum_quality
     increase_quality(1) if expired?
   end
+  
 end

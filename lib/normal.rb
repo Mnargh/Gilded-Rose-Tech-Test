@@ -8,4 +8,5 @@ class Normal < Item
     reduce_quality(1)
     reduce_quality(1) if expired?
   end
+  
 end
