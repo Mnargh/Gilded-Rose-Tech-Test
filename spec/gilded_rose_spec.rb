@@ -4,15 +4,6 @@ describe GildedRose do
 
   describe "Update_quality" do
 
-    # it "Can access the items stored" do
-    #   items = [Item.new("+5 Dexterity Vest", 10, 20)]
-    #   GildedRose.new(items)
-    #   expect(items[0].sell_in).to eq 10
-    #   expect(items[0].quality).to eq 20
-    # end
-
-
-
     context "Normal items" do
       it "Ordinary item quality and sell_in decreases by 1 every day" do
         items = [Item.new("+5 Dexterity Vest", 10, 20)]
