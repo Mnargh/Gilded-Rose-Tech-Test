@@ -8,27 +8,10 @@ class GildedRose
     @items = items
   end
 
-  def next_day
+  def update_quality
     @items.each do |item|
-      update_quality(item)
+      item.update
     end
-  end
-
-  def update_quality(item)
-      case item.name
-        when NORMAL
-          update_normal_item(item)
-        when SULFURAS
-          update_sulfuras(item)
-        when BRIE
-          update_brie(item)
-        when PASS
-          update_pass(item)
-      end
-
-      if item.name.include?("Conjured")
-        update_conjured(item)
-      end
   end
 
   def update_normal_item(item)

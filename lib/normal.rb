@@ -1,14 +1,17 @@
 class Normal
 
-attr_reader :item
+attr_accessor :name, :sell_in, :quality
 
-def initialize(item)
-  @item = item
-end
+  def initialize(name, sell_in, quality)
+    @name = name
+    @sell_in = sell_in
+    @quality = quality
+  end
 
-def update
-  item.sell_in -= 1
-  return if item.quality == 0
-  item.quality -= 1
-  item.quality -= 1 if item.sell_in < 0
+  def update
+    @sell_in -= 1
+    return if @quality == 0
+    @quality -= 1
+    @quality -= 1 if @sell_in < 0
+  end
 end
